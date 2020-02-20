@@ -22,6 +22,12 @@ RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_V
   unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
+ENV TERRAGRUNT_VERSION 0.22.3
+
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+
+RUN chmod +x /usr/local/bin/terragrunt
+
 RUN npm init -y
 RUN npm install @commitlint/cli
 RUN npm install @commitlint/config-conventional
