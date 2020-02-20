@@ -1,16 +1,20 @@
-FROM node:latest
+FROM node:13-alpine
 
-RUN apt-get update
-RUN apt-get install -y \
-  python3 \
-  python3-pip \
+RUN apk add --no-cache \
+  python \
+  py-pip \
+  py-setuptools \
+  ca-certificates \
   openssl \
+  openssh-client \
+  groff \
+  less \
   bash \
   curl \
   jq \
   git \
   zip && \
-  pip3 install awscli
+  pip install --no-cache-dir --upgrade pip awscli
 
 ENV TERRAFORM_VERSION 0.12.20
 
