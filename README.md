@@ -30,3 +30,5 @@ Build from node with:
 * lint-staged
 * semantic-release
 * terraunit
+* go 1.13.8
+* terratest
