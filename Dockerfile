@@ -13,12 +13,13 @@ RUN apk add --no-cache \
   curl \
   jq \
   git \
-  zip && \
-  pip install --no-cache-dir --upgrade pip awscli
+  zip
+
+RUN pip install --no-cache-dir --upgrade pip awscli
 
 ENV TERRAFORM_VERSION 0.12.20
 
-RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+RUN wget --quiet -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
   unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
@@ -41,6 +42,32 @@ RUN npm install lint-staged
 RUN npm install semantic-release
 RUN npm install terraunit
 RUN rm package*.json
+
+ENV GOLANG_VERSION 1.13.8
+
+RUN goRelArch='linux-amd64'; \
+    goRelSha256='0567734d558aef19112f2b2873caa0c600f1b4a5827930eb5a7f35235219e9d8' && \
+    wget --quiet -O go.tgz https://golang.org/dl/go${GOLANG_VERSION}.${goRelArch}.tar.gz && \
+	echo "$goRelSha256 *go.tgz" | sha256sum -c - && \
+	tar -C /usr/local -xzf go.tgz && \
+	rm go.tgz && \
+	mkdir /lib64 && \
+	ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 && \
+	export PATH="/usr/local/go/bin:$PATH" && \
+	go version
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && \
+    go get github.com/gruntwork-io/terratest/modules/terraform && \
+    go get -u github.com/golang/dep/cmd/dep
+
+WORKDIR $GOPATH/src/github.com/gruntwork-io/terratest/modules/terraform
+
+RUN go install
+
+WORKDIR $GOPATH/src/app/test/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node"]
