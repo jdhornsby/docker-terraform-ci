@@ -40,7 +40,7 @@ RUN npm init -y \
     && npm install jest \
     && npm install lint-staged \
     && npm install semantic-release \
-    && npm install terraunit \
+    && npm install terraunit
 RUN rm package*.json
 
 ENV GOLANG_VERSION 1.13.8
