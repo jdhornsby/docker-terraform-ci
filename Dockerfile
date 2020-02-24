@@ -29,18 +29,18 @@ ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_V
 
 RUN chmod +x /usr/local/bin/terragrunt
 
-RUN npm init -y \
-    && npm install @commitlint/cli \
-    && npm install @commitlint/config-conventional \
-    && npm install @semantic-release/changelog \
-    && npm install @semantic-release/commit-analyzer \
-    && npm install @semantic-release/git \
-    && npm install @semantic-release/release-notes-generator \
-    && npm install husky \
-    && npm install jest \
-    && npm install lint-staged \
-    && npm install semantic-release \
-    && npm install terraunit
+RUN npm init -y && \
+    npm install @commitlint/cli && \
+    npm install @commitlint/config-conventional && \
+    npm install @semantic-release/changelog && \
+    npm install @semantic-release/commit-analyzer && \
+    npm install @semantic-release/git && \
+    npm install @semantic-release/release-notes-generator && \
+    npm install husky && \
+    npm install jest && \
+    npm install lint-staged && \
+    npm install semantic-release && \
+    npm install terraunit
 RUN rm package*.json
 
 ENV GOLANG_VERSION 1.13.8
