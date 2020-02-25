@@ -14,7 +14,8 @@ RUN apk add --no-cache \
   jq \
   git \
   zip \
-  gcc
+  gcc \
+  libc-dev
 
 RUN pip install --no-cache-dir --upgrade pip awscli
 
