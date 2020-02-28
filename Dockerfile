@@ -19,13 +19,13 @@ RUN apk add --no-cache \
 
 RUN pip install --no-cache-dir --upgrade pip awscli
 
-ENV TERRAFORM_VERSION 0.12.20
+ENV TERRAFORM_VERSION 0.12.21
 
 RUN wget --quiet -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
   unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
-ENV TERRAGRUNT_VERSION 0.22.3
+ENV TERRAGRUNT_VERSION 0.22.5
 
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
@@ -45,10 +45,10 @@ RUN npm init -y && \
     npm install terraunit
 RUN rm package*.json
 
-ENV GOLANG_VERSION 1.13.8
+ENV GOLANG_VERSION 1.14
 
 RUN goRelArch='linux-amd64'; \
-    goRelSha256='0567734d558aef19112f2b2873caa0c600f1b4a5827930eb5a7f35235219e9d8' && \
+    goRelSha256='08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca' && \
     wget --quiet -O go.tgz https://golang.org/dl/go${GOLANG_VERSION}.${goRelArch}.tar.gz && \
 	echo "$goRelSha256 *go.tgz" | sha256sum -c - && \
 	tar -C /usr/local -xzf go.tgz && \
