@@ -19,13 +19,13 @@ RUN apk add --no-cache \
 
 RUN pip install --no-cache-dir --upgrade pip awscli
 
-ENV TERRAFORM_VERSION 0.12.21
+ENV TERRAFORM_VERSION 0.12.24
 
 RUN wget --quiet -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
   unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
-ENV TERRAGRUNT_VERSION 0.22.5
+ENV TERRAGRUNT_VERSION 0.23.4
 
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
