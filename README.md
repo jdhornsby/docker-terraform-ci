@@ -4,7 +4,7 @@
 Docker powered build and test environment based on Node and Terraform.
 
 Build from node with:
-* Terraform 0.12.20
+* Terraform
 * Terragrunt
 * python
 * py-pip
