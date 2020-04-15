@@ -17,7 +17,7 @@ RUN apk add --no-cache \
   gcc \
   libc-dev
 
-RUN pip install --no-cache-dir --upgrade pip awscli
+RUN pip install --no-cache-dir --upgrade pip awscli boto3
 
 ENV TERRAFORM_VERSION 0.12.24
 
