@@ -15,7 +15,8 @@ RUN apk add --no-cache \
   git \
   zip \
   gcc \
-  libc-dev
+  libc-dev \
+  gpg
 
 RUN pip install --no-cache-dir --upgrade pip awscli boto3
 

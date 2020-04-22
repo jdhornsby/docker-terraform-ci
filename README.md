@@ -32,3 +32,4 @@ Build from node with:
 * terraunit
 * go 1.13.8
 * terratest
+* gpg
