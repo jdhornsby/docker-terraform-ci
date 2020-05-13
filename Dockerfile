@@ -26,7 +26,7 @@ RUN wget --quiet -O terraform.zip https://releases.hashicorp.com/terraform/${TER
   unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
-ENV TERRAGRUNT_VERSION 0.23.4
+ENV TERRAGRUNT_VERSION 0.23.17
 
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
