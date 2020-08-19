@@ -20,7 +20,7 @@ RUN apk add --no-cache \
 
 RUN pip install --no-cache-dir --upgrade pip awscli boto3
 
-ENV TERRAFORM_VERSION 0.12.26
+ENV TERRAFORM_VERSION 0.12.29
 
 RUN wget --quiet -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
   unzip terraform.zip -d /usr/local/bin && \
